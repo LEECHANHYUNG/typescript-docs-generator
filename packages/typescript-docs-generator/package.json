@@ -5,7 +5,11 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "ISC",
+  "scripts": {
+    "extract-types": "ts-node src/scripts/extract-props.ts"
+  },
   "dependencies": {
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
@@ -15,6 +19,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^24.10.0"
+    "@types/node": "^24.10.0",
+    "ts-node": "^10.9.2"
   }
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 type NativeButtonProps = React.ComponentPropsWithoutRef<"button">;
 
 interface CustomButtonProps {
@@ -9,14 +7,14 @@ interface CustomButtonProps {
 
 type ButtonProps = NativeButtonProps & CustomButtonProps;
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   children,
   variant = "primary",
   type = "button",
   disabled = false,
   onClick,
   ...rest
-}) => {
+}: ButtonProps) => {
   return (
     <button
       type={type}

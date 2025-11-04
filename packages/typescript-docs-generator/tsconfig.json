@@ -1,9 +1,13 @@
 {
   "extends": "@repo/typescript-config/base",
   "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "preserve"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["dist", "build", "node_modules"]
 }
