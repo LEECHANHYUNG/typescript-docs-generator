@@ -1,26 +1,20 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import * as ts from "typescript";
+import { loadTSConfig } from "../config";
 
 const getComponentProps = () => {
-  const __dirName = process.cwd();
+  const tsConfigPath = path.resolve(process.cwd(), "tsconfig.json");
 
-  const buttonFilePath = path.resolve(__dirName, "src/examples/button.tsx");
+  const { options, fileNames } = loadTSConfig(tsConfigPath);
+  const buttonFilePath = path.resolve(
+    process.cwd(),
+    "./src/examples/button.tsx"
+  );
 
-  const configPath = ts.findConfigFile(
-    __dirName,
-    ts.sys.fileExists,
-    "tsconfig.json"
-  );
-  const configFile = ts.readConfigFile(configPath!, ts.sys.readFile);
-  const parsedConfig = ts.parseJsonConfigFileContent(
-    configFile.config,
-    ts.sys,
-    path.dirname(configPath!)
-  );
-  const program = ts.createProgram([buttonFilePath], parsedConfig.options);
+  const program = ts.createProgram(fileNames, options);
   const checker = program.getTypeChecker();
   const targetSourceFile = program.getSourceFile(buttonFilePath);
+
   if (!targetSourceFile) {
     throw new Error("Source file not found");
   }

@@ -5,10 +5,13 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "type": "module",
   "license": "ISC",
   "scripts": {
-    "extract-types": "ts-node src/scripts/extract-props.ts"
+    "extract-types": "ts-node src/scripts/extract-props.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start:watch": "nodemon dist/scripts/extract-props.js",
+    "dev": "concurrently \"npm:build:watch\" \"npm:start:watch\""
   },
   "dependencies": {
     "@types/react": "19.1.0",
@@ -20,6 +23,8 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^24.10.0",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2"
   }
 }
