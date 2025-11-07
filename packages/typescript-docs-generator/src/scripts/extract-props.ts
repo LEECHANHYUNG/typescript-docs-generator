@@ -1,6 +1,7 @@
 import path from "node:path";
 import * as ts from "typescript";
 import { loadTSConfig } from "../config";
+import { parseFromProgram } from "../parser";
 
 const getComponentProps = () => {
   const tsConfigPath = path.resolve(process.cwd(), "tsconfig.json");
@@ -18,22 +19,7 @@ const getComponentProps = () => {
   if (!targetSourceFile) {
     throw new Error("Source file not found");
   }
-  targetSourceFile.forEachChild((node) => {
-    if (ts.isInterfaceDeclaration(node)) {
-      const symbol = checker.getSymbolAtLocation(node.name);
-      console.log(`Props for ${node.name.text}:`);
-      const type = checker.getDeclaredTypeOfSymbol(symbol!);
-      const properties = checker.getPropertiesOfType(type);
-      properties.forEach((declaration) => {
-        const propType = checker.getTypeOfSymbolAtLocation(
-          declaration,
-          declaration.valueDeclaration!
-        );
-        const typeString = checker.typeToString(propType);
-        console.log(`- ${declaration.name}: ${typeString}`);
-      });
-    }
-  });
+  parseFromProgram(buttonFilePath, program);
 };
 
 getComponentProps();

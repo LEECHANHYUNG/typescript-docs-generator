@@ -5,7 +5,7 @@ interface CustomButtonProps {
   variant?: "primary" | "secondary";
 }
 
-type ButtonProps = NativeButtonProps & CustomButtonProps;
+export type ButtonProps = NativeButtonProps & CustomButtonProps;
 
 export const Button = ({
   children,
