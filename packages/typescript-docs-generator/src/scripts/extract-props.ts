@@ -13,7 +13,6 @@ const getComponentProps = () => {
   );
 
   const program = ts.createProgram(fileNames, options);
-  const checker = program.getTypeChecker();
   const targetSourceFile = program.getSourceFile(buttonFilePath);
 
   if (!targetSourceFile) {
