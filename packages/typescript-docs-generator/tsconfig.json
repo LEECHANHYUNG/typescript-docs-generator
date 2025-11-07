@@ -8,6 +8,5 @@
     "rootDir": "./src",
     "jsx": "preserve"
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "build", "node_modules"]
+  "include": ["src/**/*"]
 }
